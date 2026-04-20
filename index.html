@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bilal EL JAMAL — AI Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1f3d;
+    --navy-mid: #1a3158;
+    --accent: #e05c2a;
+    --accent-soft: #f0845a;
+    --gold: #c9a84c;
+    --cream: #f8f5f0;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --text-mid: #4a4a6a;
+    --text-light: #8888aa;
+    --border: #e2ddd8;
+    --card-bg: #ffffff;
+    --section-bg: #f4f1ec;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(15, 31, 61, 0.96);
+    backdrop-filter: blur(12px);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent-soft); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 60px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(224,92,42,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    padding: 5rem 4rem 5rem 8rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(224,92,42,0.15);
+    border: 1px solid rgba(224,92,42,0.3);
+    color: var(--accent-soft);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-name span { color: var(--accent); }
+
+  .hero-title {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    margin-bottom: 1.6rem;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-title strong {
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+  }
+
+  .hero-bio {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .badge {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.78rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    padding: 0.75rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    border: 2px solid var(--accent);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent-soft);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    padding: 0.75rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    border: 2px solid rgba(255,255,255,0.2);
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover {
+    border-color: rgba(255,255,255,0.5);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  /* Hero right panel */
+  .hero-panel {
+    padding: 5rem 6rem 5rem 2rem;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 1.4rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    transition: all 0.3s;
+  }
+
+  .stat-card:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(224,92,42,0.3);
+    transform: translateX(6px);
+  }
+
+  .stat-icon {
+    font-size: 1.8rem;
+    width: 48px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .stat-info h4 {
+    color: var(--white);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .stat-info p {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 5rem 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: var(--navy);
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    color: var(--text-mid);
+    font-size: 1rem;
+    max-width: 600px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--white);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text-mid);
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.2rem;
+    background: var(--section-bg);
+    border-radius: 10px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .highlight-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+  .highlight-item h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.2rem;
+  }
+
+  .highlight-item p {
+    font-size: 0.83rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  /* ── RESEARCH ── */
+  #research {
+    background: var(--section-bg);
+  }
+
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .research-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .research-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .research-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-4px); }
+  .research-card:hover::before { transform: scaleX(1); }
+
+  .research-card-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .research-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
+  }
+
+  .research-card p {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .research-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .research-tag {
+    background: var(--section-bg);
+    color: var(--navy-mid);
+    font-size: 0.72rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── PUBLICATIONS ── */
+  #publications {
+    background: var(--white);
+  }
+
+  .pub-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    align-items: start;
+    transition: all 0.3s;
+  }
+
+  .pub-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .pub-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: rgba(224,92,42,0.08);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  .pub-content h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
+
+  .pub-authors {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    margin-bottom: 0.3rem;
+  }
+
+  .pub-authors strong { color: var(--accent); }
+
+  .pub-venue {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    font-style: italic;
+  }
+
+  .pub-badge {
+    background: linear-gradient(135deg, var(--accent), var(--gold));
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    align-self: start;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience {
+    background: var(--section-bg);
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--navy));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.45rem;
+    top: 8px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .timeline-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.6rem 2rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+
+  .timeline-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.3rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .timeline-role {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--navy);
+  }
+
+  .timeline-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    background: rgba(224,92,42,0.08);
+    padding: 0.25rem 0.6rem;
+    border-radius: 5px;
+  }
+
+  .timeline-org {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    margin-bottom: 0.8rem;
+  }
+
+  .timeline-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .timeline-points li {
+    font-size: 0.86rem;
+    color: var(--text-mid);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .timeline-points li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0.2rem;
+  }
+
+  /* ── EDUCATION ── */
+  #education {
+    background: var(--white);
+  }
+
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    background: var(--section-bg);
+    border-radius: 14px;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+
+  .edu-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+    border-color: var(--accent);
+  }
+
+  .edu-degree {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+
+  .edu-school {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .edu-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .edu-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    background: rgba(224,92,42,0.1);
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ── SKILLS ── */
+  #skills {
+    background: var(--navy);
+  }
+
+  #skills .section-title { color: var(--white); }
+  #skills .section-label { color: var(--accent-soft); }
+  #skills .section-subtitle { color: rgba(255,255,255,0.5); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-group {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 1.8rem;
+    transition: all 0.3s;
+  }
+
+  .skill-group:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(224,92,42,0.3);
+  }
+
+  .skill-group-title {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    margin-bottom: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-pill {
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.75);
+    font-size: 0.78rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+
+  /* ── PROJECTS ── */
+  #projects {
+    background: var(--section-bg);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .project-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+    border-color: var(--accent);
+  }
+
+  .project-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .project-card-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .project-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    background: rgba(224,92,42,0.08);
+    padding: 0.25rem 0.6rem;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+
+  .project-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin-bottom: 0.2rem;
+  }
+
+  .project-stack {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .project-card p {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .project-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .project-points li {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .project-points li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0.2rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+
+  .project-tag {
+    background: var(--section-bg);
+    color: var(--navy-mid);
+    font-size: 0.72rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  @media (max-width: 900px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--cream);
+    text-align: center;
+  }
+
+  .contact-card {
+    background: var(--navy);
+    border-radius: 20px;
+    padding: 4rem;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(224,92,42,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .contact-card h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+  }
+
+  .contact-card p {
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .contact-link.email {
+    background: var(--accent);
+    color: white;
+  }
+
+  .contact-link.linkedin {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .contact-link.github {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .contact-link:hover { transform: translateY(-3px); filter: brightness(1.15); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    text-align: center;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.3);
+    font-size: 0.8rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-content { padding: 4rem 2rem 2rem; }
+    .hero-panel { padding: 2rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .research-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .pub-card { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Bilal <span>EL JAMAL</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">PhD Researcher · AI/ML · NLP</div>
+    <h1 class="hero-name">Bilal<br><span>EL JAMAL</span></h1>
+    <p class="hero-title">
+      <strong>Stony Brook University</strong> · Dept. of Electrical &amp; Computer Engineering<br>
+      Advisors: Prof. Alex Doboli &amp; Prof. Wendy Tang
+    </p>
+    <p class="hero-bio">
+      I build AI systems that understand how humans collaborate. My research focuses on speech analytics, team dynamics modeling, and LLM-driven intervention in engineering education — combining NLP, behavioral science, and neurosymbolic AI.
+    </p>
+    <div class="hero-badges">
+      <span class="badge">Speech Analytics</span>
+      <span class="badge">Team Formation</span>
+      <span class="badge">Team Dynamics</span>
+      <span class="badge">Team Modeling</span>
+      <span class="badge">NLP</span>
+      <span class="badge">LLMs</span>
+      <span class="badge">Neurosymbolic AI</span>
+      <span class="badge">AI/ML</span>
+    </div>
+    <div class="hero-actions">
+      <a href="mailto:bilal.a.eljamal@hotmail.com" class="btn-primary">Get in Touch</a>
+      <a href="https://linkedin.com/in/eng-bilal-el-jamal" target="_blank" class="btn-outline">LinkedIn</a>
+      <a href="https://github.com/BilalELJAMAL" target="_blank" class="btn-outline">GitHub</a>
+    </div>
+  </div>
+
+  <div class="hero-panel">
+    <div class="stat-card">
+      <div class="stat-icon">🎓</div>
+      <div class="stat-info">
+        <h4>PhD Researcher — GPA 4.0</h4>
+        <p>Computer Engineering · Expected May 2027<br>Nina &amp; Vinod Rathore Graduate Scholar</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📄</div>
+      <div class="stat-info">
+        <h4>DAC 2026 — Accepted</h4>
+        <p>63rd Design Automation Conference<br>LLMs for Automated Verilog Code Generation</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🔬</div>
+      <div class="stat-info">
+        <h4>SpeakMap</h4>
+        <p>End-to-end speech analytics platform<br>Whisper · pyannote · librosa · 24 teams</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">💼</div>
+      <div class="stat-info">
+        <h4>10+ Years Industry Experience</h4>
+        <p>AI/ML systems · Enterprise software<br>NLP classifiers · LLM pipelines in production</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🏫</div>
+      <div class="stat-info">
+        <h4>Course Instructor — ESE 224</h4>
+        <p>Data Structures &amp; Algorithms in C++<br>50+ students per semester · Stony Brook</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">About</div>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>
+          I am a PhD researcher in Computer Engineering at Stony Brook University, where I study how AI can help us understand and improve human collaboration in engineering education. My work sits at the intersection of speech analytics, natural language processing, behavioral science, and neurosymbolic AI.
+        </p>
+        <p>
+          Before my PhD, I spent over 10 years in industry building enterprise software, AI-powered automation systems, and NLP pipelines that ran in production for hundreds of companies. I built financial anomaly detection agents, support triage chatbots, and issue severity classifiers — systems where getting things right actually mattered.
+        </p>
+        <p>
+          I am also a Course Instructor for ESE 224 (Data Structures and Algorithms in C++) at Stony Brook, where I mentor 50+ students per semester through code reviews, assignments, and Socratic office hours designed to build genuine problem-solving ability.
+        </p>
+      </div>
+      <div class="about-highlights fade-in">
+        <div class="highlight-item">
+          <div class="highlight-icon">🧠</div>
+          <div>
+            <h4>Research Focus</h4>
+            <p>Team dynamics, collaboration modeling, speech analytics, LLM-driven intervention, neurosymbolic AI</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🏆</div>
+          <div>
+            <h4>Nina &amp; Vinod Rathore Graduate Scholarship</h4>
+            <p>Awarded for academic excellence and research potential at Stony Brook University</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🌍</div>
+          <div>
+            <h4>Background</h4>
+            <p>Software Engineering Lead, AI/ML Developer</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">📍</div>
+          <div>
+            <h4>Location</h4>
+            <p>Stony Brook, New York, USA</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="container">
+    <div class="section-label">Research</div>
+    <h2 class="section-title">Research Areas</h2>
+    <p class="section-subtitle">My work bridges NLP, behavioral science, and AI systems to understand and improve how engineering teams collaborate.</p>
+    <div class="research-grid">
+      <div class="research-card fade-in">
+        <div class="research-card-icon">🎙️</div>
+        <h3>Speech Analytics &amp; Team Dynamics</h3>
+        <p>Building SpeakMap, an end-to-end platform using Whisper large-v3, pyannote 3.1, and librosa to extract 8 behavioral metrics per speaker from real engineering team sessions. Applied to 24 undergraduate teams across 4 quarterly sessions.</p>
+        <div class="research-tags">
+          <span class="research-tag">Whisper</span>
+          <span class="research-tag">pyannote</span>
+          <span class="research-tag">librosa</span>
+          <span class="research-tag">diarization</span>
+        </div>
+      </div>
+      <div class="research-card fade-in">
+        <div class="research-card-icon">📊</div>
+        <h3>Team Modeling &amp; Prediction</h3>
+        <p>Using Random Forest, Logistic Regression, OLS regression, and MLPRegressor to predict team-level dynamics outcomes including coordination, role emergence, and balanced participation from individual behavioral signals over time.</p>
+        <div class="research-tags">
+          <span class="research-tag">Random Forest</span>
+          <span class="research-tag">MLPRegressor</span>
+          <span class="research-tag">LOOCV</span>
+          <span class="research-tag">FDR</span>
+        </div>
+      </div>
+      <div class="research-card fade-in">
+        <div class="research-card-icon">🤖</div>
+        <h3>LLM-Driven Collaboration (HILP)</h3>
+        <p>Investigating Human-in-the-Loop Programming frameworks where LLMs act as intelligent facilitators during collaborative software development, generating real-time interventions that support team problem-solving and coordination.</p>
+        <div class="research-tags">
+          <span class="research-tag">LLMs</span>
+          <span class="research-tag">HILP</span>
+          <span class="research-tag">GPT API</span>
+          <span class="research-tag">intervention</span>
+        </div>
+      </div>
+      <div class="research-card fade-in">
+        <div class="research-card-icon">🔗</div>
+        <h3>Neurosymbolic AI</h3>
+        <p>Combining MLP neural feature learning with Decision Tree rule extraction to generate interpretable, actionable policies for LLM-driven collaboration interventions — making team dynamics models explainable and actionable.</p>
+        <div class="research-tags">
+          <span class="research-tag">neurosymbolic</span>
+          <span class="research-tag">decision trees</span>
+          <span class="research-tag">interpretability</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="container">
+    <div class="section-label">Publications</div>
+    <h2 class="section-title">Published Work</h2>
+    <p class="section-subtitle">Peer-reviewed publications and conference papers.</p>
+
+    <div class="pub-card fade-in">
+      <div class="pub-year">2026</div>
+      <div class="pub-content">
+        <h3>Integrating LLMs into a Two-Tier Traditional Methodology for Automated Verilog Code Generation</h3>
+        <p class="pub-authors">Lu, A., <strong>EL Jamal, B.</strong> and Doboli, A.</p>
+        <p class="pub-venue">63rd Design Automation Conference (DAC 2026) — one of the most prestigious venues in computer engineering and electronic design automation</p>
+      </div>
+      <div class="pub-badge">Accepted · DAC 2026</div>
+    </div>
+
+<div class="pub-card fade-in" style="border: 2px dashed var(--border); opacity: 0.7;">
+      <div class="pub-year" style="background: rgba(0,0,0,0.05); color: var(--text-light);">2026</div>
+      <div class="pub-content">
+        <h3>A Reflective Co-Evolution Framework for LLM-Guided Routing
+  Heuristics in NoC Systems</h3>
+        <p class="pub-authors">Lu, A., <strong>EL Jamal, B.</strong> and Doboli, A.</p>
+        <p class="pub-venue">Target: Conference on Codesign of Embedded Systems (CODES 2026)</p>
+      </div>
+      <div class="pub-badge" style="background: var(--text-light);">In Review</div>
+    </div>
+
+    <div class="pub-card fade-in" style="border: 2px dashed var(--border); opacity: 0.7;">
+      <div class="pub-year" style="background: rgba(0,0,0,0.05); color: var(--text-light);">2025</div>
+      <div class="pub-content">
+        <h3>Cognitive, Social, and Emotional Balance in Team Formation for High-Impact, Low-Probability Events</h3>
+        <p class="pub-authors"><strong>EL Jamal, B.</strong>, Doboli, A., Doboli, S. and Tang, W.</p>
+        <p class="pub-venue">Target: Small Group Research</p>
+      </div>
+      <div class="pub-badge" style="background: var(--text-light);">In Review</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="timeline">
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-role">Graduate Research Assistant &amp; Course Instructor</div>
+            <div class="timeline-date">Aug 2024 — Present</div>
+          </div>
+          <div class="timeline-org">Stony Brook University · Stony Brook, NY</div>
+          <ul class="timeline-points">
+            <li>Building SpeakMap, an end-to-end speech analytics platform for team dynamics research using Whisper, pyannote, and librosa</li>
+            <li>Applying ML classifiers and longitudinal regression models to predict team performance outcomes across 24 teams</li>
+            <li>Investigating neurosymbolic AI and HILP frameworks for LLM-driven collaboration interventions</li>
+            <li>Teaching ESE 224 Data Structures and Algorithms in C++ to 50+ students per semester</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-role">Lead Software &amp; AI/ML Engineer</div>
+            <div class="timeline-date">Aug 2019 — Jun 2025</div>
+          </div>
+          <div class="timeline-org">Holcom · Lebanon</div>
+          <ul class="timeline-points">
+            <li>Developed AI-powered financial anomaly detection agent using Z-score and IQR-based outlier detection across 7 ERP modules for 200+ companies monthly</li>
+            <li>Built NLP support triage chatbot using TF-IDF, intent classification, and Logistic Regression severity scoring</li>
+            <li>Designed AI-driven regression testing pipeline combining GPT API analysis with CI/CD via GitHub Actions</li>
+            <li>Led an engineering team across 7 ERP modules with 100+ API integrations</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-role">Software Engineer</div>
+            <div class="timeline-date">Oct 2016 — Jun 2019</div>
+          </div>
+          <div class="timeline-org">Nascode · Lebanon</div>
+          <ul class="timeline-points">
+            <li>Built rule-based conversational AI chatbot using Python and NLTK for service navigation and project quotation</li>
+            <li>Delivered 40+ websites and 20+ full-stack platforms using .NET Core, C#, SQL Server, and Oracle</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-label">Education</div>
+    <h2 class="section-title">Academic Background</h2>
+    <div class="edu-grid">
+      <div class="edu-card fade-in">
+        <div class="edu-degree">PhD in Computer Engineering</div>
+        <div class="edu-school">Stony Brook University<br>Stony Brook, New York</div>
+        <div class="edu-meta">
+          <span class="edu-tag">GPA 4.0</span>
+          <span class="edu-tag">2024 — 2027</span>
+          <span class="edu-tag">Rathore Scholar</span>
+        </div>
+      </div>
+      <div class="edu-card fade-in">
+        <div class="edu-degree">Bachelor of Engineering</div>
+        <div class="edu-school">Telecommunications Engineering<br>Holy Spirit University of Kaslik (USEK), Lebanon</div>
+        <div class="edu-meta">
+          <span class="edu-tag">GPA 3.6+</span>
+          <span class="edu-tag">2011 — 2016</span>
+          <span class="edu-tag">75% Merit Scholarship</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">Technical Skills</h2>
+    <p class="section-subtitle">Technologies and tools I use in research and production systems.</p>
+    <div class="skills-grid">
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-list">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">C++</span>
+          <span class="skill-pill">C#</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">VB.NET</span>
+          <span class="skill-pill">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">AI / ML</div>
+        <div class="skill-list">
+          <span class="skill-pill">PyTorch</span>
+          <span class="skill-pill">Scikit-learn</span>
+          <span class="skill-pill">Hugging Face</span>
+          <span class="skill-pill">NLTK</span>
+          <span class="skill-pill">spaCy</span>
+          <span class="skill-pill">Pandas</span>
+          <span class="skill-pill">NumPy</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">Speech / Audio</div>
+        <div class="skill-list">
+          <span class="skill-pill">Whisper large-v3</span>
+          <span class="skill-pill">pyannote 3.1</span>
+          <span class="skill-pill">librosa</span>
+          <span class="skill-pill">diarization</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">LLMs</div>
+        <div class="skill-list">
+          <span class="skill-pill">GPT API</span>
+          <span class="skill-pill">Mistral-7B</span>
+          <span class="skill-pill">RAG</span>
+          <span class="skill-pill">LangChain</span>
+          <span class="skill-pill">Fine-tuning</span>
+          <span class="skill-pill">Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">Backend / DevOps</div>
+        <div class="skill-list">
+          <span class="skill-pill">.NET Core</span>
+          <span class="skill-pill">Blazor</span>
+          <span class="skill-pill">REST APIs</span>
+          <span class="skill-pill">GitHub Actions</span>
+          <span class="skill-pill">Azure DevOps</span>
+          <span class="skill-pill">CI/CD</span>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">Databases</div>
+        <div class="skill-list">
+          <span class="skill-pill">SQL Server</span>
+          <span class="skill-pill">PostgreSQL</span>
+          <span class="skill-pill">Oracle</span>
+          <span class="skill-pill">MongoDB</span>
+          <span class="skill-pill">ETL</span>
+          <span class="skill-pill">SSIS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-subtitle">AI-powered systems built for real educational and research impact.</p>
+    <div class="projects-grid">
+
+      <div class="project-card fade-in">
+        <div class="project-card-header">
+          <div class="project-card-icon">🎓</div>
+          <div class="project-year">2026</div>
+        </div>
+        <div>
+          <h3>GradiTech</h3>
+          <div class="project-stack">Blazor · C# · .NET · SQL Server · GPT API · GitHub Actions</div>
+        </div>
+        <ul class="project-points">
+          <li>Built a full-stack AI-powered academic grading platform with Clean Architecture (.NET Core, Blazor) featuring automated submission retrieval and grade management via GitHub API integration across 100+ student repositories</li>
+          <li>Integrated GPT API for AI-driven exam generation — producing MCQ, coding, and concept-based questions dynamically tailored to course topics and difficulty level</li>
+          <li>Built automated code evaluation combining test-case execution with GPT API feedback, pushing structured grading reports with deductions and explanations back to student repositories via GitHub Actions</li>
+          <li>Implemented rubric-based concept gap detection that identifies students scoring below class average on a concept, triggering GPT-generated targeted learning resources</li>
+          <li>Developed a virtual TA chatbot powered by GPT API with course-focused context (assignments, exercises, rubrics) providing academic support 24/7</li>
+        </ul>
+        <div class="project-tags">
+          <span class="project-tag">GPT API</span>
+          <span class="project-tag">Blazor</span>
+          <span class="project-tag">Clean Architecture</span>
+          <span class="project-tag">GitHub Actions</span>
+          <span class="project-tag">RAG</span>
+          <span class="project-tag">Code Evaluation</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-card-header">
+          <div class="project-card-icon">🤖</div>
+          <div class="project-year">2024</div>
+        </div>
+        <div>
+          <h3>AI-Powered Tutor System</h3>
+          <div class="project-stack">Python · Mistral-7B · RAG · LangChain · Stony Brook University</div>
+        </div>
+        <ul class="project-points">
+          <li>Built a conversational AI assistant for a graduate computer vision course, answering any course-related question using Mistral-7B with the course textbook ingested as primary reference</li>
+          <li>Implemented Retrieval-Augmented Generation (RAG) over a curated knowledge base of 50+ course resources including lecture materials, assignments, and textbook chapters</li>
+          <li>Handled 100+ topic-specific queries spanning computer vision concepts, assignment clarifications, and conceptual explanations with adaptive response depth based on query complexity</li>
+        </ul>
+        <div class="project-tags">
+          <span class="project-tag">Mistral-7B</span>
+          <span class="project-tag">RAG</span>
+          <span class="project-tag">LangChain</span>
+          <span class="project-tag">Python</span>
+          <span class="project-tag">LLM</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-card">
+      <h2>Let's Connect</h2>
+      <p>Open to research collaborations, fellowship opportunities, and conversations about AI, NLP, and team dynamics.</p>
+      <div class="contact-links">
+        <a href="mailto:bilal.a.eljamal@hotmail.com" class="contact-link email">✉ Email</a>
+        <a href="https://linkedin.com/in/eng-bilal-el-jamal" target="_blank" class="contact-link linkedin">in LinkedIn</a>
+        <a href="https://github.com/BilalELJAMAL" target="_blank" class="contact-link github">⌥ GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Bilal EL JAMAL · PhD Researcher, Stony Brook University</p>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Smooth active nav highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 100) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === '#' + current
+        ? 'var(--accent-soft)'
+        : 'rgba(255,255,255,0.7)';
+    });
+  });
+</script>
+</body>
+</html>
