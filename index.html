@@ -112,6 +112,28 @@
     z-index: 2;
   }
 
+
+  /* ── PHOTO ── */
+  .hero-photo-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 0 4px rgba(224,92,42,0.2), 0 8px 24px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+  }
+
+  .hero-photo:hover {
+    transform: scale(1.05);
+  }
+
   .hero-tag {
     display: inline-flex;
     align-items: center;
@@ -827,37 +849,6 @@
     .projects-grid { grid-template-columns: 1fr; }
   }
 
-
-  .pub-read-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    margin-top: 0.8rem;
-    padding: 0.45rem 1rem;
-    background: transparent;
-    border: 1.5px solid var(--accent);
-    color: var(--accent);
-    border-radius: 6px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .pub-read-btn:hover {
-    background: var(--accent);
-    color: white;
-    transform: translateY(-1px);
-  }
-
-  .pub-read-btn.disabled {
-    border-color: var(--text-light);
-    color: var(--text-light);
-    pointer-events: none;
-    opacity: 0.5;
-  }
-
   /* ── CONTACT ── */
   #contact {
     background: var(--cream);
@@ -989,6 +980,9 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
+    <div class="hero-photo-wrapper">
+      <img src="photo.jpg" alt="Bilal EL JAMAL" class="hero-photo">
+    </div>
     <div class="hero-tag">PhD Researcher · AI/ML · NLP</div>
     <h1 class="hero-name">Bilal<br><span>EL JAMAL</span></h1>
     <p class="hero-title">
@@ -1172,7 +1166,6 @@
         <h3>Integrating LLMs into a Two-Tier Traditional Methodology for Automated Verilog Code Generation</h3>
         <p class="pub-authors">Lu, A., <strong>EL Jamal, B.</strong> and Doboli, A.</p>
         <p class="pub-venue">63rd Design Automation Conference (DAC 2026) — one of the most prestigious venues in computer engineering and electronic design automation</p>
-        <a href="https://drive.google.com/file/d/1s3T6WtRASoPV8-TSjxAYtNxmJBOJZpgR/view?usp=sharing" target="_blank" class="pub-read-btn">&#128279; Read Paper</a>
       </div>
       <div class="pub-badge">Accepted · DAC 2026</div>
     </div>
@@ -1180,10 +1173,10 @@
 <div class="pub-card fade-in" style="border: 2px dashed var(--border); opacity: 0.7;">
       <div class="pub-year" style="background: rgba(0,0,0,0.05); color: var(--text-light);">2026</div>
       <div class="pub-content">
-        <h3>A Reflective Co-Evolution Framework for LLM-Guided Routing Heuristics in NoC Systems</h3>
+        <h3>A Reflective Co-Evolution Framework for LLM-Guided Routing
+  Heuristics in NoC Systems</h3>
         <p class="pub-authors">Lu, A., <strong>EL Jamal, B.</strong> and Doboli, A.</p>
         <p class="pub-venue">Target: Conference on Codesign of Embedded Systems (CODES 2026)</p>
-        <a href="https://drive.google.com/file/d/1U_pZOUcO_p0IZzujUBVkgdzg6Btvk7n2/view?usp=sharing" target="_blank" class="pub-read-btn">&#128279; Read Paper</a>
       </div>
       <div class="pub-badge" style="background: var(--text-light);">In Review</div>
     </div>
@@ -1194,7 +1187,6 @@
         <h3>Cognitive, Social, and Emotional Balance in Team Formation for High-Impact, Low-Probability Events</h3>
         <p class="pub-authors"><strong>EL Jamal, B.</strong>, Doboli, A., Doboli, S. and Tang, W.</p>
         <p class="pub-venue">Target: Small Group Research</p>
-        <a href="https://drive.google.com/file/d/1H0zUl4SVJoIJQGVMvvIFEUDRCJRz1fKs/view?usp=sharing" target="_blank" class="pub-read-btn">&#128279; Read Paper</a>
       </div>
       <div class="pub-badge" style="background: var(--text-light);">In Review</div>
     </div>
